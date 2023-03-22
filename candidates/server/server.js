@@ -19,7 +19,7 @@ app.listen(process.env.PORT, (req,res)=>{
     res.status(200).send('server running');
 });
 
-//fetch data
+//fetch datal
 app.get('/',(req,res)=>{
     res.status(200).json();
 })
