@@ -28,4 +28,58 @@ button{
 /* view user component */
 td, th{
     padding: 5px 15px;
+    border: 1px solid gray;
+}
+/* new pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+    margin: 20px;
+}
+
+.red {
+    color: red;
+    font-size: 18px;
+}
+
+.gray {
+    color: gray;
+    font-size: 18px;
+}
+
+.btns {
+    background-color: red;
+    color: white;
+    padding: 4px 12px;
+    width: max-content;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    outline: 0;
+}
+
+/* search */
+.searchBox {
+    display: flex;
+    border-radius: 0px 10px 10px 0px;
+
+}
+
+.searchText {
+    padding: 10px 10px;
+    border-radius: 10px 0px 0px 10px;
+    border: none;
+    outline: none;
+    box-shadow: inset 0 5px 9px gray;
+    /* color: aliceblue; */
+}
+
+.search-btn {
+    background: rgb(0, 0, 0);
+    border: none;
+    border-radius: 0px 10px 10px 0px;
+    padding: 12px;
+    color: aliceblue;
 }

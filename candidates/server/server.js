@@ -1,15 +1,15 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const bodyparser = require('body-parser');
+// const bodyparser = require('body-parser');
 const cors = require('cors');
 const candidateM = require('./models/candidateM');
 
 app.use(cors());
 require('dotenv').config();
 
-app.use(express.json());
-app.use(express.urlencoded({limit:'30mb', extended:true}));
+app.use(express.json({limit:'30mb', extended:true}));
+app.use(express.urlencoded({extended:false}));
 
 //db connection
 mongoose.connect("mongodb+srv://krishna:spkrishna@krishnacluster.xjap0dj.mongodb.net/tudip?retryWrites=true&w=majority").then(()=>{
@@ -23,7 +23,7 @@ app.listen(process.env.PORT, ()=>{
 });
 
 //fetch data
-app.get('/users',(req,res)=>{
+app.get('/',(req,res)=>{
     candidateM.find().then((post)=>{
         res.status(200).send(post);
     }).catch((err)=>{
@@ -38,7 +38,7 @@ app.post('/adduser',(req,res)=>{
         email:req.body.email,
         address:req.body.address
     }).then(()=>{
-        res.status(200).send("New user added");
+        res.status(200).send("New user added").end();
     }).catch((err)=>{
         res.status(400).send(err);
     })
