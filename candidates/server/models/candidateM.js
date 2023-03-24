@@ -9,5 +9,5 @@ const candidateSchema = new mongoose.Schema({
     email:String,
     address:String
 })
-
-module.exports = mongoose.model('candidate', candidateSchema);
+const candidateM = mongoose.model('candidate', candidateSchema);
+module.exports = candidateM;

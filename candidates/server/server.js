@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const bodyparser = require('body-parser');
 const cors = require('cors');
+const candidateM = require('./models/candidateM');
 
 app.use(cors());
 require('dotenv').config();
@@ -11,15 +12,34 @@ app.use(express.json());
 app.use(express.urlencoded({limit:'30mb', extended:true}));
 
 //db connection
-mongoose.connect(MONGO_DB, (req, res)=>{
-    res.status(200).send('data base connected')
+mongoose.connect("mongodb+srv://krishna:spkrishna@krishnacluster.xjap0dj.mongodb.net/tudip?retryWrites=true&w=majority").then(()=>{
+    console.log("connected to db")
+}).catch((err)=>{
+    console.log(err)
 })
 //server connection
-app.listen(process.env.PORT, (req,res)=>{
-    res.status(200).send('server running');
+app.listen(process.env.PORT, ()=>{
+    console.log('server running on ' + process.env.PORT);
 });
 
-//fetch datal
-app.get('/',(req,res)=>{
-    res.status(200).json();
+//fetch data
+app.get('/users',(req,res)=>{
+    candidateM.find().then((post)=>{
+        res.status(200).send(post);
+    }).catch((err)=>{
+        res.status(400).send(err);
+    })
+})
+//POST DATA
+app.post('/adduser',(req,res)=>{
+    candidateM.create({
+        name: req.body.name,
+        mobile:req.body.mobile,
+        email:req.body.email,
+        address:req.body.address
+    }).then(()=>{
+        res.status(200).send("New user added");
+    }).catch((err)=>{
+        res.status(400).send(err);
+    })
 })
