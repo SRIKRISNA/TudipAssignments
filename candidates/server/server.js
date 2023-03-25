@@ -44,3 +44,8 @@ app.post('/adduser',(req,res)=>{
         res.status(400).send(err); 
     })
 })
+
+// Update data
+// app.put('/edit', (req,res)=>{
+//     candidateM.
+// })
