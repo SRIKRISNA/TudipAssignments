@@ -3,6 +3,7 @@ import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import './user.css';
 import Pagination from "./Pagination";
+import Header from './Header';
 
 
 const ViewUser = () => {
@@ -10,15 +11,16 @@ const ViewUser = () => {
 
     const showperPage = 5;
     const [pagination, setPagination] = useState({
-        start:0,
-        end:showperPage
+        start: 0,
+        end: showperPage
     })
-    const onPaginationChange = (start,end) => {
-        setPagination({start:start, end:end})
+    const onPaginationChange = (start, end) => {
+        setPagination({ start: start, end: end })
     }
 
     // search & fitler
-    
+    const [search, setSearch] = useState("");
+
 
     useEffect(() => {
         axios.get('http://localhost:5000/').then((res) => {
@@ -30,6 +32,8 @@ const ViewUser = () => {
     }, []);
     return (
         <div className='viewContainer'>
+            <Header search={search} setSearch={setSearch} /><hr></hr>
+
             <div className="table">
                 <Table>
                     <thead>
@@ -42,7 +46,10 @@ const ViewUser = () => {
                     </thead>
                     <tbody>
                         {
-                            userData.slice(pagination.start, pagination.end).map((curUser, i) => {
+                            userData.slice(pagination.start, pagination.end).filter((item) => {
+                                if (search === "") { return item; }
+                                else if (item.name.toLowerCase().includes(search.toLowerCase())) { return item; }
+                            }).map((curUser, i) => {
                                 return (
                                     <tr key={i}>
                                         <td>{curUser.name}</td>

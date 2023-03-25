@@ -38,8 +38,9 @@ app.post('/adduser',(req,res)=>{
         email:req.body.email,
         address:req.body.address
     }).then(()=>{
+        console.log("New user added...")
         res.status(200).send("New user added").end();
     }).catch((err)=>{
-        res.status(400).send(err);
+        res.status(400).send(err); 
     })
 })

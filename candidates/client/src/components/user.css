@@ -61,25 +61,11 @@ td, th{
 }
 
 /* search */
-.searchBox {
-    display: flex;
-    border-radius: 0px 10px 10px 0px;
-
-}
 
 .searchText {
     padding: 10px 10px;
-    border-radius: 10px 0px 0px 10px;
     border: none;
     outline: none;
     box-shadow: inset 0 5px 9px gray;
     /* color: aliceblue; */
-}
-
-.search-btn {
-    background: rgb(0, 0, 0);
-    border: none;
-    border-radius: 0px 10px 10px 0px;
-    padding: 12px;
-    color: aliceblue;
 }
